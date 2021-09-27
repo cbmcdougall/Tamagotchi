@@ -1,4 +1,4 @@
-const { access } = require('./pet');
+const { UserInteraction } = require('./cli');
 
-const app = new access();
-app.run;
+const app = new UserInteraction();
+app.run();
