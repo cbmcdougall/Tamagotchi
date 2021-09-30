@@ -1,4 +1,4 @@
-const { UserInteraction } = require('./cli');
+const { UserInterface } = require('./cli');
 
-const app = new UserInteraction();
+const app = new UserInterface();
 app.run();

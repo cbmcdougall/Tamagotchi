@@ -6,7 +6,7 @@ const ui = require('readline').createInterface({
     output: process.stdout
 });
 
-class UserInteraction {
+class UserInterface {
     run(){
         console.clear();
         this.homePage();
@@ -47,10 +47,10 @@ class UserInteraction {
                         ui.close();
                         break;
                     default:
-                        console.log('Please select an interaction');
-                        setTimeout(() => this.petPage(), 1500);
+                        setTimeout(() => console.log('Please select an interaction'), 0);
+                        this.petPage();
                         break;
-                }                
+                }
             } catch (err) {
                 this.handleError(err);
             }
@@ -58,10 +58,14 @@ class UserInteraction {
     };
 
     feedPet(pet){
+        if (pet.hungerLevel === 0) {
+            console.log(`\n${pet.name} isn't hungry!`);
+            this.returnToPetPage();
+        }
         ui.question(`\nWhat would you like to feed to ${pet.name}?\n`, input => {
             try {
                 pet.feed(input);
-                ui.question(`\n[Press enter to continue]\n`, () => this.petPage())
+                this.returnToPetPage();
             } catch (err) {
                 this.handleError(err);
             }
@@ -69,10 +73,14 @@ class UserInteraction {
     };
 
     playWithPet(pet){
+        if (pet.happinessLevel === 100) {
+            console.log(`\n${pet.name} doesn't want to play!`);
+            this.returnToPetPage();
+        }
         ui.question(`\nWhat toy would you like give ${pet.name} to play?\n`, input => {
             try {
                 pet.play(input);
-                ui.question(`\n[Press enter to continue]\n`, () => this.petPage())
+                this.returnToPetPage();
             } catch (err) {
                 this.handleError(err);
             }
@@ -81,16 +89,20 @@ class UserInteraction {
 
     checkStats(pet){
         console.log(`\n${pet.name}\'s stats:`);
-        console.log(pet.happinessLevel);
-        console.log(pet.hungerLevel);
-        ui.question(`\n[Press enter to continue]\n`, () => this.petPage())
+        console.log(` - happiness level: ${pet.happinessLevel}%`);
+        console.log(` - hunger level: ${pet.hungerLevel}%`);
+        this.returnToPetPage();
+    }
+
+    returnToPetPage(){
+        ui.question(`\n[Press enter to continue]\n`, () => this.petPage());
     }
 
     handleError(err){
-        console.log('\n', err.message, '\n'); // Experiment with err, err.name, err.message, err.stack
+        console.log('\n', err.message, '\n');
         ui.close();
     }
 
 };
 
-module.exports = { UserInteraction }
+module.exports = { UserInterface }
