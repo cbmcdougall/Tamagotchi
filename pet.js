@@ -4,10 +4,10 @@ function randInt(min, max){
 }
 
 class Pet {
-    constructor(name, happiness=randInt(80,100), hunger=randInt(0,20)){
+    constructor(name){
         this.name = name;
-        this.happiness = happiness;
-        this.hunger = hunger;
+        this.happiness = randInt(80,100);
+        this.hunger = randInt(0,20);
     }
 
     // Play with the pet
@@ -22,10 +22,17 @@ class Pet {
 
     // Pet loses random amount of hunger
     getHungry(){
-        const addHunger = randInt(10,25);
+        const addHunger = randInt(10,30);
         this.hunger+=addHunger;
-        console.log(`Playing has made ${this.name} more hungry...`);
+        console.log(`\n   ...${this.name} is getting hungry`);
     };
+
+    // Pet loses random amount of happiness
+    getSad(){
+        const sadness = randInt(-30,-10);
+        console.log(`\n   ...${this.name} really wants to play`);
+        return sadness
+    }
 
     // Feed the pet
     feed(food){
@@ -44,8 +51,7 @@ class Pet {
         let addHappiness;
         let removeHappiness;
         if (this.happiness === 100) {
-            removeHappiness = randInt(-30,-10);
-            console.log(`${this.name} really wants to play...`);
+            removeHappiness = this.getSad();
         } else if (enjoyed) {
             addHappiness = Math.min(randInt(1,10), 100-this.happiness);
             console.log(`${this.name} enjoyed their meal, happiness has gone up by ${addHappiness}%!`);
