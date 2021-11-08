@@ -1,3 +1,4 @@
+const helpers = require('./helpers');
 const { Pet } = require('./pet');
 
 // Using the built in readline module to get user input. prompt-sync or inquirer can give a cleaner experience.
@@ -20,7 +21,7 @@ class UserInterface {
             try {
                 this.pet = new Pet(input[0].toUpperCase() + input.slice(1));
                 console.log(`\nYou have now created a pet called ${this.pet.name}, be sure to look after it!`);
-                ui.question(`[Press enter to continue]\n`, () => this.petPage())
+                this.returnToPetPage();
             } catch(err) {
                 this.handleError(err);
             }
@@ -65,7 +66,7 @@ class UserInterface {
         ui.question(`\nWhat would you like to feed to ${pet.name}?\n`, input => {
             try {
                 pet.feed(input);
-                this.returnToPetPage();
+                this.randomEvent(pet);
             } catch (err) {
                 this.handleError(err);
             }
@@ -80,7 +81,7 @@ class UserInterface {
         ui.question(`\nWhat toy would you like give ${pet.name} to play?\n`, input => {
             try {
                 pet.play(input);
-                this.returnToPetPage();
+                this.randomEvent(pet);
             } catch (err) {
                 this.handleError(err);
             }
@@ -89,9 +90,24 @@ class UserInterface {
 
     checkStats(pet){
         console.log(`\n${pet.name}\'s stats:`);
-        console.log(` - happiness level: ${pet.happinessLevel}%`);
-        console.log(` - hunger level: ${pet.hungerLevel}%`);
+        console.log(` - happiness level: ${pet.happiness}%`);
+        console.log(` - hunger level: ${pet.hunger}%`);
         this.returnToPetPage();
+    }
+
+    randomEvent(pet) {
+        // Determine if random event happens
+        const ranNum = helpers.randInt(4,1);
+        const eventHappens = Math.floor(ranNum/4);   // 25% chance 
+        if (eventHappens) {
+            console.log(`\n...wait, something is happening!`);
+            // Randomly choose an event to occur
+            const events = [pet.getHungry, pet.getSad];
+            const selector = Math.floor(Math.random()*events.length);
+            const selectedEvent = events[selector];
+            selectedEvent();
+        }
+        this.returnToPetPage()
     }
 
     returnToPetPage(){

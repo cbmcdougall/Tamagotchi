@@ -1,0 +1,24 @@
+{
+  "name": "tamagotchi",
+  "version": "1.0.0",
+  "description": "A simple tamagotchi-like game in the CLI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbmcdougall/Tamagotchi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbmcdougall/Tamagotchi/issues"
+  },
+  "homepage": "https://github.com/cbmcdougall/Tamagotchi#readme",
+  "dependencies": {
+    "auto-bind": "^4.0.0"
+  }
+}
