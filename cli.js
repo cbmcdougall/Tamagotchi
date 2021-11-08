@@ -99,7 +99,6 @@ class UserInterface {
         // Determine if random event happens
         const ranNum = helpers.randInt(4,1);
         const eventHappens = Math.floor(ranNum/4);   // 25% chance 
-        console.log(eventHappens);
         if (eventHappens) {
             console.log(`\n...wait, something is happening!`);
             // Randomly choose an event to occur
