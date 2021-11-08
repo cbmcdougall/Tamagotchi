@@ -1,6 +1,6 @@
 # CLI Tamagotchi
 
-A simple tamagotchi-like game in the command-line. I may come back to this if I find time to however this is not guaranteed.
+A simple tamagotchi-like game in the CLI. I may come back to this if I find time to however this is not guaranteed.
 
 ## Installation & Usage
 
