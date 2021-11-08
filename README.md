@@ -8,7 +8,7 @@ A simple tamagotchi-like game in the CLI. I may come back to this if I find time
 - cd into this folder.
 - run `npm install` to install dependencies.
 - run `node index.js` to begin the game!
-  - note: there is an `npm start` script however the game doesn't work correctly when using the script, see the [Bugs](#bugs) section.
+  - note: there is an `npm start` script however the game doesn't work correctly when using this (see [Bugs](#bugs)).
 
 ## Current features
 
