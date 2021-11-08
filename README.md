@@ -1,13 +1,14 @@
 # CLI Tamagotchi
 
-A simple tamagotchi-like game in the command-line
+A simple tamagotchi-like game in the command-line. I may come back to this if I find time to however this is not guaranteed.
 
 ## Installation & Usage
 
 - Clone or download this repo.
 - cd into this folder.
 - run `npm install` to install dependencies.
-- run `npm start` to begin the game!
+- run `node index.js` to begin the game!
+  - note: there is an `npm start` script however the game doesn't work correctly when using the script.
 
 ## Current features
 
@@ -26,3 +27,9 @@ A simple tamagotchi-like game in the command-line
 - More random events!
 - Repercussions if a stat reaches its worst value (e.g. 0% happiness or 100% hunger).
 - More user interactions, possibly tying in with more random events.
+
+## Bugs
+
+- [] Game doesn't run correctly when using `npm start` script. (`node index.js` works fine)
+  - [] Doesn't clear terminal between pages.
+  - [] Doesn't exit properly, user has to force-stop with ctrl+c or equivalent.
